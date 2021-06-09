@@ -1,5 +1,19 @@
 targets:
 - name: Google
   address: "https://www.google.com"
+- name: Mock
+  address: "https://mock.codes/423"
+- name: Airbus
+  address: "https://www.airbus.com"
+- name: Orange
+  address: "https://www.orange.fr"
+- name: Reddit
+  address: "https://www.reddit.com"
+- name: Localhost
+  address: "http://localhost"
+- name: "HFR"
+- address: "https://www.hardware.fr"
 - name: Facebook
   address: "https://www.facebook.com"
+- name: "Twitter"
+  address: "https://www.twitter.com"
