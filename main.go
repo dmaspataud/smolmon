@@ -26,12 +26,14 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
+	pterm.EnableDebugMessages()
 	for i := 0; i < len(c.Targets); i++ {
 		if c.Targets[i].Address != "" {
 			wg.Add(1)
-			checkHealth(c.Targets[i], &wg)
+			go checkHealth(c.Targets[i], &wg)
 		}
 	}
+	wg.Wait()
 }
 
 func readConf() []byte {
@@ -44,15 +46,14 @@ func readConf() []byte {
 
 func checkHealth(target YamlTarget, wg *sync.WaitGroup) {
 	defer wg.Done()
-	checkSpinner, _ := pterm.DefaultSpinner.Start("Checking ...", target.Name)
 	resp, err := http.Get(target.Address)
 	if err != nil {
-		checkSpinner.Fail(target.Name, " (", target.Address, ") => ", err)
+		pterm.Error.Println(target.Name, "(", target.Address, ")")
 		return
 	}
 	if resp.StatusCode != 200 {
-		checkSpinner.Fail(target.Name, " (", target.Address, ") => ", resp.Status)
+		pterm.Error.Println(target.Name, "(", target.Address, ")")
 	} else if resp.StatusCode == 200 {
-		checkSpinner.Success(target.Name, " (", target.Address, ")")
+		pterm.Success.Println(target.Name, "(", target.Address, ")")
 	}
 }

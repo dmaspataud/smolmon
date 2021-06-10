@@ -1,4 +1,12 @@
 targets:
+- name: Vault
+  address: "http://vault.homelab.local"
+- name: Mock
+  address: "http://dashboard.homelab.local"
+- name: Router
+  address: "http://192.168.0.1"
+- name: Kubernetes
+  address: "https://192.168.0.100:6443"
 - name: Google
   address: "https://www.google.com"
 - name: Mock
@@ -11,8 +19,8 @@ targets:
   address: "https://www.reddit.com"
 - name: Localhost
   address: "http://localhost"
-- name: "HFR"
-- address: "https://www.hardware.fr"
+- name: Hardware.fr
+  address: "https://www.hardware.fr"
 - name: Facebook
   address: "https://www.facebook.com"
 - name: "Twitter"
